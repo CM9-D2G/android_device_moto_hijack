@@ -48,21 +48,21 @@ HIJACK_BOOT_PREREQS += $(file)
 # copy hijack log dump if we must (we use a custom one for the chroot environment)
 ifeq ($(BOARD_HIJACK_LOG_ENABLE),true)
 file := $(HIJACK_BOOT_OUT)/sbin/hijack.log_dump
-$(file) : device/motorola/common/hijack-boot/hijack.log_dump
+$(file) : device/motorola/hijack/hijack-boot/hijack.log_dump
 	@echo "Copy hijack.log_dump -> $@"
 	@mkdir -p $(dir $@)
 	@rm -rf $@
-	$(hide) cp -a device/motorola/common/hijack-boot/hijack.log_dump $@
+	$(hide) cp -a device/motorola/hijack/hijack-boot/hijack.log_dump $@
 HIJACK_BOOT_PREREQS += $(file)
 endif
 
 # copy hijack kill script
 file := $(HIJACK_BOOT_OUT)/sbin/hijack.killall
-$(file) : device/motorola/common/hijack-boot/hijack.killall
+$(file) : device/motorola/hijack/hijack-boot/hijack.killall
 	@echo "Copy hijack.killall -> $@"
 	@mkdir -p $(dir $@)
 	@rm -rf $@
-	$(hide) cp -a device/motorola/common/hijack-boot/hijack.killall $@
+	$(hide) cp -a device/motorola/hijack/hijack-boot/hijack.killall $@
 HIJACK_BOOT_PREREQS += $(file)
 
 # set the local path for toolbox functions
@@ -181,7 +181,7 @@ $(HIJACK_BOOT_OTA_PACKAGE_TARGET) : KEY_CERT_PAIR := build/target/product/securi
 $(HIJACK_BOOT_OTA_PACKAGE_TARGET) : $(BUILT_HIJACK_BOOT_FILES_PACKAGE) $(otatools)
 	@echo "Package hijack-boot OTA: $@"
 	$(hide) PYTHONPATH="${PYTHONPATH}:build/tools/releasetools" \
-	   device/motorola/common/hijack-boot/ota_from_target_files -v \
+	   device/motorola/hijack/hijack-boot/ota_from_target_files -v \
 	       -p $(HOST_OUT) \
 	       -k $(KEY_CERT_PAIR) \
 	       $(BUILT_HIJACK_BOOT_FILES_PACKAGE) $@
