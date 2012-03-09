@@ -37,4 +37,4 @@ endif
 $(call inherit-product-if-exists, vendor/motorola/common/common_hijack-vendor.mk)
 
 # Inherit from the non-small variant of this file
-$(call inherit-product, device/motorola/common/common.mk)
+$(call inherit-product, device/motorola/hijack/common.mk)
